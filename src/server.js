@@ -2,6 +2,7 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
+import { getAllContacts, getContactsById } from './services/contacts.js';
 
 const PORT = Number(getEnvVar('PORT', '3000'));
 
@@ -22,6 +23,35 @@ export const setupServer = () => {
   app.get('/', (req, res) => {
     res.json({
       message: 'Hello Mongo DB!',
+    });
+  });
+
+  app.get('/contacts', async (req, res) => {
+    const contacts = await getAllContacts();
+
+    res.json({
+      status: 200,
+      message: 'Successfully found contacts!',
+      data: contacts,
+    });
+  });
+
+  app.get('/contacts/:id', async (req, res) => {
+    const { id } = req.params;
+
+    const contact = await getContactsById(id);
+
+    if (contact === null) {
+      return res.status(404).json({
+        status: 404,
+        message: `Not found contact with id ${id}!`,
+      });
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: `Successfully found contact with id ${id}!`,
+      data: contact,
     });
   });
 
