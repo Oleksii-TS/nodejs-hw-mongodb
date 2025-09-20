@@ -66,5 +66,5 @@ export async function deleteContactController(req, res, next) {
     return next(new createHttpError(404, `Contact not found!`));
   }
 
-  res.json({ status: 200, message: 'Contact deleted successfully' });
+  res.status(204).send();
 }
