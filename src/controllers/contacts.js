@@ -35,7 +35,7 @@ export const getContactsByIdController = async (req, res, next) => {
   const contact = await getContactsById(id);
 
   if (!contact) {
-    return next(new createHttpError(404, `Contact not found!`));
+    return next(new createHttpError(404, `Contact not found with id ${id}!`));
   }
 
   res.status(200).json({
@@ -75,7 +75,7 @@ export async function deleteContactController(req, res, next) {
   const contact = await deleteContact(id);
 
   if (!contact) {
-    return next(new createHttpError(404, `Contact not found!`));
+    return next(new createHttpError(404, `Contact not found with id ${id}!`));
   }
 
   res.status(204).send();
