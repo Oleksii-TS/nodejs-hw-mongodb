@@ -40,3 +40,28 @@ export const loginUserSchema = Joi.object({
     'any.required': 'Password is required',
   }),
 });
+
+export const requestResetEmailSchema = Joi.object({
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required()
+    .messages({
+      'string.base': 'Email should be a type of text',
+      'string.empty': 'Email cannot be empty',
+      'string.email': 'Email must be a valid email',
+      'any.required': 'Email is required',
+    }),
+});
+
+export const resetPasswordSchema = Joi.object({
+  password: Joi.string().required().messages({
+    'string.base': 'Password must be a text string',
+    'string.empty': 'Password is required',
+    'any.required': 'Password is required',
+  }),
+  token: Joi.string().required().messages({
+    'string.base': 'Token must be a text string',
+    'string.empty': 'Token is required',
+    'any.required': 'Token is required',
+  }),
+});
