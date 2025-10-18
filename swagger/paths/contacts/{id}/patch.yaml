@@ -1,0 +1,31 @@
+tags:
+  - Contacts
+summary: Update a contact
+operationId: patchContact
+description: Update an existing contact by its ID. Allows updating fields and uploading a new photo
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '64fa123abcde4567'
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        $ref: ../../../components/schemas/updateContacts.yaml
+responses:
+  '200':
+    $ref: ../../../components/responses/contacts/200_updateContactId.yaml
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/contacts/404_contact.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

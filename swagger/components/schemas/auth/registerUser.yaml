@@ -1,0 +1,15 @@
+type: object
+required:
+  - name
+  - email
+  - password
+properties:
+  name:
+    type: string
+    example: Olga Nikonchuk
+  email:
+    type: string
+    example: Nikonchuk@example.com
+  password:
+    type: string
+    example: pwd_1234567

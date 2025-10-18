@@ -1,0 +1,17 @@
+tags:
+  - Auth
+summary: Refresh access token
+operationId: refreshUserSession
+description: Refresh access token using a valid refresh token
+security: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/auth/refreshToken.yaml'
+responses:
+  '200':
+    $ref: '../../components/responses/auth/200_refresh.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
